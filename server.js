@@ -41,6 +41,11 @@ app.post("/login",(req,res)=>{
     })
 })
 
+app.delete("/delete",(req,res)=>{
+    console.log(req.body)
+    res.status(202).send("Deleted successfully")
+})
+
 app.listen(PORT,()=>{
     console.log("server is listening")
 })
