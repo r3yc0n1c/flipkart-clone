@@ -4,8 +4,9 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000
 
 const app=express()
-app.use(express.json()) //middleware
-require("./db") //MongoDB connection
+app.use(express.json())
+require("./db")
+const User = require("./models/userSchema")
 
 app.get("/test",(req,res)=>{
     res.status(200).send("Server is working")
@@ -14,15 +15,11 @@ app.get("/test",(req,res)=>{
 app.post("/signup",(req,res)=>{
     const {name,email,pswd}=req.body
     console.log(name,email,pswd)
-
-    const data=JSON.stringify({email:{"name":name,"password":pswd}})
-    fs.writeFile("db.json",data, "utf8", (err)=>{
-        if(err){
-            console.log(err)
-            res.status(500).send("SignUp error")
-        }
-        res.status(200).send("SignUp successful")
+    const newUser = new User({
+        name,email,pswd
     })
+    newUser.save()
+    res.status(200).send("Signup Successful")
 })
 
 app.post("/login",(req,res)=>{
