@@ -4,7 +4,8 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000
 
 const app=express()
-app.use(express.json())
+app.use(express.json()) //middleware
+require("./db") //MongoDB connection
 
 app.get("/test",(req,res)=>{
     res.status(200).send("Server is working")
