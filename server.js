@@ -42,9 +42,19 @@ app.post("/login", async (req, res) => {
         res.status(403).send("Account does not exist. SigUp first")
 })
 
-app.delete("/delete", (req, res) => {
+app.delete("/delete", async (req, res) => {
     console.log(req.body)
-    res.status(202).send("Deleted successfully")
+
+    const { email } = req.body
+    const existingUser = await User.findOne({
+        email: email
+    })
+    if (!existingUser) {
+        res.status(400).send('User not found')
+    } else {
+        await existingUser.remove()
+        res.status(200).send("User deleted successfully")
+    }
 })
 
 app.listen(PORT, () => {
