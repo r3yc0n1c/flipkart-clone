@@ -1,5 +1,4 @@
 const express = require("express")
-const fs = require("fs")
 require('dotenv').config()
 const PORT = process.env.PORT || 5000
 
@@ -22,21 +21,22 @@ app.post("/signup",(req,res)=>{
     res.status(200).send("Signup Successful")
 })
 
-app.post("/login",(req,res)=>{
+app.post("/login",async (req,res)=>{
     const {email,pswd}=req.body
     console.log(email,pswd)
-    fs.readFile("db.json", "utf8", (err,jsondata)=>{
-        if(err){
-            console.log(err)
-            res.status(500).send("Login error")
-        }
-        const data=JSON.parse(jsondata)
-        console.log("data=",data)
-        if(pswd===data.email.password)
-            res.status(200).send("Login successful")
-        else
-            res.status(401).send("Login unsuccessful")
+    const existingUser = await User.findOne({
+        email:email
     })
+    if(existingUser){
+        if(existingUser.pswd === pswd){
+            console.log(existingUser.name + " logged in")
+            res.status(200).send("Login successful")
+        }
+        else
+            res.status(401).send("Wrong password. Login unsuccessful")
+    }
+    else
+        res.status(403).send("Account does not exist. SigUp first")
 })
 
 app.delete("/delete",(req,res)=>{
