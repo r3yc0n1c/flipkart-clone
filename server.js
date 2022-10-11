@@ -39,7 +39,16 @@ app.post("/login", async (req, res) => {
             res.status(401).send("Wrong password. Login unsuccessful")
     }
     else
-        res.status(403).send("Account does not exist. SigUp first")
+        res.status(403).send("Account does not exist. SignUp first")
+})
+
+app.put("/update", async (req,res)=>{
+    const { email, newpswd } = req.body
+    const update = await User.updateOne({email:email},{pswd:newpswd})
+    if (update.modifiedCount)
+        res.status(200).send("Update successful")
+    else
+        res.status(404).send("Account does not exist. SignUp first")
 })
 
 app.delete("/delete", async (req, res) => {
