@@ -52,18 +52,12 @@ app.put("/update", async (req,res)=>{
 })
 
 app.delete("/delete", async (req, res) => {
-    console.log(req.body)
-
     const { email } = req.body
-    const existingUser = await User.findOne({
-        email: email
-    })
-    if (!existingUser) {
-        res.status(400).send('User not found')
-    } else {
-        await existingUser.remove()
-        res.status(200).send("User deleted successfully")
-    }
+    const del = await User.deleteOne({email:email})
+    if(del.deletedCount)
+        res.status(200).send("Deleted successfully")
+    else
+        res.status(404).send("Account does not exist!")
 })
 
 app.listen(PORT, () => {
