@@ -45,8 +45,9 @@ app.post("/login", async (req, res) => {
 app.put("/update", async (req,res)=>{
     const { email, newpswd } = req.body
     const update = await User.updateOne({email:email},{pswd:newpswd})
-    if (update.modifiedCount)
-        res.status(200).send("Update successful")
+    if (update.modifiedCount) {
+            res.status(200).send("Update successful")
+        }
     else
         res.status(404).send("Account does not exist. SignUp first")
 })
@@ -54,10 +55,12 @@ app.put("/update", async (req,res)=>{
 app.delete("/delete", async (req, res) => {
     const { email } = req.body
     const del = await User.deleteOne({email:email})
-    if(del.deletedCount)
+    if(del.deletedCount){
         res.status(200).send("Deleted successfully")
+    }
     else
-        res.status(404).send("Account does not exist!")
+        res.status(404).send("Account does not exist. SignUp first")
+    console.log(del)
 })
 
 app.listen(PORT, () => {
