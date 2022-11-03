@@ -7,6 +7,7 @@ Clone of https://www.flipkart.com/
 - **E**xpress
 - **R**eact
 - **N**ode
+- MUI
 
 # Installation
 
@@ -15,11 +16,17 @@ Clone of https://www.flipkart.com/
 $ git clone https://github.com/r3yc0n1c/flipkart-clone.git
 $ cd flipkart-clone
 ```
-- Install dependencies
+- Install dependencies for backend
 ```sh
+$ cd backend
 $ npm i .
 ```
-- Start the server
+- Install dependencies for frontend
+```sh
+$ cd frontend
+$ npm i .
+```
+- Start the frontend and backend server
 ```sh
 $ npm start
 ```
