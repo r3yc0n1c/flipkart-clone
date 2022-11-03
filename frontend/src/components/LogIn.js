@@ -6,21 +6,20 @@ import {useNavigate} from "react-router-dom"
 
 
 
-const SignUp = () => {
-    const name = useRef(), email = useRef(), password = useRef()
-    const nav = useNavigate();
-    const handleSignUp = () => {
+const LogIn = () => {
+    const email = useRef(), password = useRef()
+    const nav= useNavigate();
+    const handleLogIn = () => {
         const data = {
             email: email.current.value,
-            name: name.current.value,
             pswd: password.current.value
         }
         console.log(data)
-        Auth.signup(data)
-        alert("Signup Successful")
-        nav("/login");
+        Auth.login(data)
+        alert("Login Successful")
         //to do: redirect to the login page
     }
+    
     return <>
 
         <Grid
@@ -43,14 +42,14 @@ const SignUp = () => {
                     variant="body1"
                     sx={{ fontSize: "30px", lineHeight: "80px", fontWeight: "500", fontStyle: "normal" }}
                 >
-                    Looks like you're new here!
+                    Hey User! <br/> Happy to see you back!
                 </Typography>
 
                 <Typography
                     variant="body1"
                     sx={{ fontSize: "20px", lineHeight: "27px", fontWeight: "400", fontStyle: "normal", color: "#dbdbdb" }}
                 >
-                    Sign up with your email to get started
+                    Log In with your email to get started
                 </Typography>
 
                 <Box
@@ -82,13 +81,6 @@ const SignUp = () => {
                     height="75vh"
                     width="40vw"
                 >
-                    <TextField
-                        label="Enter your Name"
-                        type="text"
-                        variant="standard"
-                        inputRef={name}
-                        style={{ width: 450, marginBottom: 10 }}
-                    />
 
                     <TextField
                         label="Enter your Email"
@@ -117,7 +109,7 @@ const SignUp = () => {
 
                     <Button
                         variant="contained"
-                        onClick={handleSignUp}
+                        onClick={handleLogIn}
                         sx={{
                             color: "white",
                             backgroundColor: "orange",
@@ -127,13 +119,13 @@ const SignUp = () => {
                             ':hover':{bgcolor:"orange"}
                         }}
                     >
-                        Continue
+                        Login
                     </Button>
 
                     <Button
                         variant="contained"
                         onClick={()=>{
-                            nav("/login")
+                            nav("/signup")
                         }}
                         sx={{
                             color: "orange",
@@ -145,7 +137,7 @@ const SignUp = () => {
                             ':hover':{bgcolor:"white"}
                         }}
                     >
-                        Existing User? Log in
+                        New User? Sign Up!
                     </Button>
                 </Box>
                 {/* <img src="https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg"></img> */}
@@ -154,4 +146,4 @@ const SignUp = () => {
     </>
 }
 
-export default SignUp
+export default LogIn
