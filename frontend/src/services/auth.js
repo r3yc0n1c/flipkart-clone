@@ -10,6 +10,16 @@ const signup = (data)=>{
       })
 }
 
-const Auth = {signup}
+const login = (data)=>{
+  Axios.post("/login", data)
+  .then((res)=>{
+    console.log(res)
+  })
+  .catch((err)=> {
+    console.log(err.response);
+  })
+}
+
+const Auth = {signup, login}
 
 export default Auth;
