@@ -1,9 +1,14 @@
 import Navbar from "./Navbar";
+import bg from "../assets/images/bgcopy.png"
 
 const Home = () => {
     return(
-        <Navbar/>
+        <>
+            <Navbar/>
+            <img src={bg} height="100%" width="100%"></img>
+        </>
     )
+
     // return (
     //     <>
     //         <h1>You are in the Home page!</h1>

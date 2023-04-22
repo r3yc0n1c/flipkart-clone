@@ -17,12 +17,25 @@ $ cd flipkart-clone
 ```
 - Install dependencies
 ```sh
+$ cd frontend
+$ npm i .
+$ cd ../backend
 $ npm i .
 ```
 - Start the server
 ```sh
+$ cd backend
 $ npm start
 ```
+- Start the client
+```sh
+$ cd frontend
+$ npm start
+```
+
+# Demo
+
+![FlipkartAnimation](frontend/src/assets/images/FlipkartAnimation.gif)
 
 # Contributing Guidelines
 
@@ -33,6 +46,10 @@ $ npm start
 - Commit your Changes ( git commit -m 'added some features' )
 - Push to the Branch ( git push origin feat/myFeature )
 - Open a Pull Request describing the changes
+
+# Contributors
+
+- Sinjini Ghosh - [LinkedIn](https://www.linkedin.com/in/sinjini-ghosh/)  |  [GitHub](https://github.com/SINJINI-G) 
 
 
 # Contacts

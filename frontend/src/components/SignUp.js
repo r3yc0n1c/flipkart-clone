@@ -19,7 +19,6 @@ const SignUp = () => {
         Auth.signup(data)
         alert("Signup Successful")
         nav("/login");
-        //to do: redirect to the login page
     }
     return <>
 
