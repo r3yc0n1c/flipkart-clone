@@ -17,6 +17,7 @@ const LogIn = () => {
         console.log(data)
         Auth.login(data)
         alert("Login Successful")
+        nav("/");
         //to do: redirect to the login page
     }
     
